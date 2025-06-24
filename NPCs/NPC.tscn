@@ -1,12 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://crfwed5isg20y"]
+[gd_scene load_steps=6 format=3 uid="uid://crfwed5isg20y"]
 
-[ext_resource type="Script" uid="uid://crdet3yrsp0m6" path="res://NPCs/NPC.gd" id="1_d33j4"]
 [ext_resource type="Texture2D" uid="uid://cpa1t7u4q3clm" path="res://NPCs/Sprite/Dungeon_Character_2.png" id="1_s07ep"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_d33j4"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s07ep"]
+size = Vector2(9, 11)
 
 [sub_resource type="Animation" id="Animation_3mprk"]
 length = 0.001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -43,10 +44,12 @@ _data = {
 }
 
 [node name="Npc" type="CharacterBody2D"]
-script = ExtResource("1_d33j4")
+collision_layer = 17
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_d33j4")
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_s07ep")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_s07ep")
@@ -58,3 +61,4 @@ frame = 7
 libraries = {
 &"": SubResource("AnimationLibrary_pu38x")
 }
+autoplay = "idle"
