@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://crfwed5isg20y"]
+
+[ext_resource type="Script" uid="uid://crdet3yrsp0m6" path="res://NPCs/NPC.gd" id="1_d33j4"]
+[ext_resource type="Texture2D" uid="uid://cpa1t7u4q3clm" path="res://NPCs/Sprite/Dungeon_Character_2.png" id="1_s07ep"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d33j4"]
+
+[sub_resource type="Animation" id="Animation_3mprk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_yn0we"]
+resource_name = "idle"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pu38x"]
+_data = {
+&"RESET": SubResource("Animation_3mprk"),
+&"idle": SubResource("Animation_yn0we")
+}
+
+[node name="Npc" type="CharacterBody2D"]
+script = ExtResource("1_d33j4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d33j4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_s07ep")
+hframes = 7
+vframes = 2
+frame = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pu38x")
+}
