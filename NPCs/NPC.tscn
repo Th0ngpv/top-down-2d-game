@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://crfwed5isg20y"]
+[gd_scene load_steps=7 format=3 uid="uid://crfwed5isg20y"]
 
+[ext_resource type="Script" uid="uid://dyvai0y8lbwyw" path="res://NPCs/npc.gd" id="1_d33j4"]
 [ext_resource type="Texture2D" uid="uid://cpa1t7u4q3clm" path="res://NPCs/Sprite/Dungeon_Character_2.png" id="1_s07ep"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s07ep"]
@@ -43,15 +44,18 @@ _data = {
 &"idle": SubResource("Animation_yn0we")
 }
 
-[node name="Npc" type="CharacterBody2D"]
+[node name="Npc" type="CharacterBody2D" groups=["NPC"]]
 collision_layer = 17
 collision_mask = 0
+script = ExtResource("1_d33j4")
+npc_id = "npc_1"
+npc_name = "Bob"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_s07ep")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["NPC"]]
 texture = ExtResource("1_s07ep")
 hframes = 7
 vframes = 2
