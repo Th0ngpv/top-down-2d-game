@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d2q7ubmlhqp13"]
 
-[node name="ItemTemplate" type="Area2D"]
+[node name="ItemTemplate" type="Area2D" groups=["Item"]]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 

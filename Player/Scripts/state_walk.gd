@@ -5,6 +5,7 @@ class_name State_Walk extends State
 
 # nodes references
 @onready var idle: State = $"../Idle"
+@onready var attack: State_Attack = $"../Attack"
 
 # when the player enter this state
 func Enter() -> void:
@@ -32,4 +33,6 @@ func Physics( _delta : float) -> State:
 
 # inputs events in this state
 func HandleInputs( _event : InputEvent) -> State:
+	if _event.is_action_pressed("attack"):
+		return attack
 	return null
