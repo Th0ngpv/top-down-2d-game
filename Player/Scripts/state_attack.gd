@@ -5,7 +5,7 @@ var attacking : bool = false
 
 # export var
 @export var attack_sound : AudioStream
-@export_range(1, 20, 0.5) var deceleration : float
+@export_range(1, 20, 0.5) var deceleration : float = 5.0
 
 # nodes references
 @onready var walk: State_Walk = $"../Walk"
