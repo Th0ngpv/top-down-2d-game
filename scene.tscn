@@ -1,11 +1,19 @@
-[gd_scene load_steps=5 format=4 uid="uid://jpqufg7vrqnp"]
+[gd_scene load_steps=6 format=4 uid="uid://jpqufg7vrqnp"]
 
+[ext_resource type="PackedScene" uid="uid://c0urgtbobqimb" path="res://Props/Box/box.tscn" id="1_m7jmp"]
 [ext_resource type="PackedScene" uid="uid://kvfo3xq6fk8g" path="res://Tile Maps/Dungeon.tscn" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://cm4vsrcrn1mao" path="res://Player/player.tscn" id="2_3253y"]
 [ext_resource type="PackedScene" uid="uid://crfwed5isg20y" path="res://NPCs/NPC.tscn" id="2_u3cyc"]
 [ext_resource type="PackedScene" uid="uid://dxanqr6u220v3" path="res://Quest_items/Coin/coin.tscn" id="3_u3cyc"]
 
 [node name="Scene" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Box" parent="." instance=ExtResource("1_m7jmp")]
+position = Vector2(212, 91)
+
+[node name="Box2" parent="." instance=ExtResource("1_m7jmp")]
+position = Vector2(258, 90)
 
 [node name="Player" parent="." instance=ExtResource("2_3253y")]
 position = Vector2(227, 125)

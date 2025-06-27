@@ -8,11 +8,13 @@ var attacking : bool = false
 @export_range(1, 20, 0.5) var deceleration : float = 5.0
 
 # nodes references
-@onready var walk: State_Walk = $"../Walk"
-@onready var idle: State_Idle = $"../Idle"
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var attack_animation_player: AnimationPlayer = $"../../Sprite2D/AttackEffectSprite/AnimationPlayer"
-@onready var audio: AudioStreamPlayer2D = $"../../Node2D/AudioStreamPlayer2D"
+@onready var audio: AudioStreamPlayer2D = $"../../Audio/AudioStreamPlayer2D"
+
+@onready var hurt_box: HurtBox = $"../../Interactions/HurtBox"
+@onready var walk: State_Walk = $"../Walk"
+@onready var idle: State_Idle = $"../Idle"
 
 # when the player enter this state
 func Enter() -> void:
@@ -28,10 +30,14 @@ func Enter() -> void:
 	audio.stream = attack_sound
 	audio.pitch_scale = randf_range(0.9, 1.1)
 	audio.play()
+	
+	await get_tree().create_timer(0.075).timeout
+	hurt_box.monitoring = true
 
 # when the player exit this state
 func Exit() -> void:
 	animation_player.animation_finished.disconnect(EndAttack)
+	hurt_box.monitoring = false
 	attacking = false
 	pass
 	

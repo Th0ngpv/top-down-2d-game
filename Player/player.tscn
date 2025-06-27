@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cm4vsrcrn1mao"]
+[gd_scene load_steps=30 format=3 uid="uid://cm4vsrcrn1mao"]
 
 [ext_resource type="Script" uid="uid://do765i3nqvqnd" path="res://Player/Scripts/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://dqqo0v2y2ahhw" path="res://Player/Sprite/Blue_character_prototype.png" id="2_k53q1"]
@@ -9,9 +9,26 @@
 [ext_resource type="Script" uid="uid://dvdwl2220txyq" path="res://Player/Scripts/state_attack.gd" id="5_fhl08"]
 [ext_resource type="Script" uid="uid://baqw3hc0h6ajf" path="res://Player/Scripts/state_walk.gd" id="5_k53q1"]
 [ext_resource type="AudioStream" uid="uid://btc3e48utxwlt" path="res://Player/Sound/SwordSwoosh.wav" id="7_od3ui"]
+[ext_resource type="Script" uid="uid://bloqn524q4nxf" path="res://Player/Sprite/player_interaction_host.gd" id="10_apopc"]
+[ext_resource type="PackedScene" uid="uid://lp6wsqtxirsk" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="10_x3vf3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k53q1"]
-size = Vector2(12.4217, 13.5698)
+size = Vector2(12, 14)
+
+[sub_resource type="Animation" id="Animation_p5o4e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_5htga"]
 resource_name = "attack_down"
@@ -47,21 +64,6 @@ tracks/2/path = NodePath(".:show_behind_parent")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_p5o4e"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -335,13 +337,15 @@ _data = {
 &"walk_up": SubResource("Animation_od3ui")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_apopc"]
+radius = 8.0
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(1.69059, 1.62125)
 collision_mask = 16
 script = ExtResource("1_4ntmi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.887264, 0)
 shape = SubResource("RectangleShape2D_k53q1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -389,7 +393,19 @@ script = ExtResource("5_k53q1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Audio" type="Node2D" parent="."]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Node2D"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("7_od3ui")
 max_polyphony = 4
+
+[node name="Interactions" type="Node2D" parent="."]
+script = ExtResource("10_apopc")
+
+[node name="HurtBox" parent="Interactions" instance=ExtResource("10_x3vf3")]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/HurtBox"]
+position = Vector2(0, 8.01851)
+shape = SubResource("CircleShape2D_apopc")
+debug_color = Color(1, 0, 0, 0.47451)
