@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://kvfo3xq6fk8g"]
+[gd_scene load_steps=5 format=3 uid="uid://kvfo3xq6fk8g"]
 
 [ext_resource type="Texture2D" uid="uid://c3kir50ct4a2s" path="res://Tile Maps/Sprite/Dungeon_Tileset.png" id="1_4ohvh"]
+[ext_resource type="Script" uid="uid://bg1xc3r4bjxn6" path="res://Tile Maps/level_tilemap.gd" id="2_dcqbe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dcqbe"]
 texture = ExtResource("1_4ohvh")
@@ -137,3 +138,4 @@ sources/0 = SubResource("TileSetAtlasSource_dcqbe")
 [node name="Dungeon" type="TileMapLayer"]
 z_index = -1
 tile_set = SubResource("TileSet_lptn5")
+script = ExtResource("2_dcqbe")

@@ -15,6 +15,10 @@ run/main_scene="uid://jpqufg7vrqnp"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+LevelManager="*res://00_Global/globla_level_manager.gd"
+
 [display]
 
 window/size/viewport_width=480
