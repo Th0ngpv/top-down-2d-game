@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0urgtbobqimb"]
+[gd_scene load_steps=10 format=3 uid="uid://c0urgtbobqimb"]
 
 [ext_resource type="Script" uid="uid://clt5rtsjwg8a6" path="res://Props/Box/box.gd" id="1_hpreq"]
 [ext_resource type="Texture2D" uid="uid://b4y0dogwkgegt" path="res://Props/Sprite/Box/box_2_1.png" id="1_s1wti"]
@@ -27,6 +27,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hpreq"]
+size = Vector2(12, 12)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1wti"]
 size = Vector2(5, 5)
 
@@ -41,7 +44,7 @@ frame_progress = 0.861429
 [node name="HitBox" parent="." instance=ExtResource("5_ukqy1")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource("RectangleShape2D_s1wti")
+shape = SubResource("RectangleShape2D_hpreq")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 16
